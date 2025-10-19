@@ -14,6 +14,8 @@ from dotenv import load_dotenv
 import asyncio, nest_asyncio
 import pandas as pd 
 import glob
+import gdown
+from zipfile import ZipFile
 
 # ==== Setup Async ====
 nest_asyncio.apply()
@@ -49,7 +51,6 @@ for pdf_path in glob.glob(f'{folder_path}/*.pdf'):
 
 print(f"Loaded {len(all_docs)} documents from {folder_path} folder.")
 
-
 # ==== Split text ====
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 chunks = text_splitter.split_documents(all_docs)
@@ -59,7 +60,7 @@ model = "sentence-transformers/all-mpnet-base-v2"
 embeddings = HuggingFaceEndpointEmbeddings(
     model=model,
     task="feature-extraction",
-    huggingfacehub_api_token="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",
+    huggingfacehub_api_token=hf_key,
 )
 
 vector_store = FAISS.from_documents(chunks, embeddings)
