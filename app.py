@@ -25,8 +25,8 @@ except RuntimeError:
 
 # ==== Load API Key ====
 load_dotenv()
-api_key = st.secrets.get['AIzaSyBC8H06u6NzXylamH-93SJ9IhT7BMbOxnY']
-hf_key = st.secrets.get['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']
+api_key = st.secrets['GOOGLE_API_KEY']
+hf_key = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 
 if not api_key:
     st.error("GOOGLE_API_KEY tidak ditemukan. Tambahkan ke file .env atau environment variable.")
