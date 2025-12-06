@@ -177,7 +177,8 @@ if file:
     if st.button("🚀 Analisis dengan RAG"):
         prompt = (
             f"Berdasarkan pengetahuan anda, apakah seluruh isi dokumen berikut "
-            f"Identifikasi seluruh peraturan pada bagian Mengingat yang tidak terdapat dalam dokumen RAG. Tampilkan hasilnya dalam daftar.\n\n{pdf_text[:4000]}"
+            f"tuliskan bagian dari peraturan yang tidak tercantum dalam dokumen RAG pada bagian mengingat!
+\n\n{pdf_text[:4000]}"
         )
 
         with st.spinner("🔎 Memproses dokumen..."):
