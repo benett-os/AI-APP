@@ -1,6 +1,6 @@
 import streamlit as st
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -62,7 +62,10 @@ def split_documents(_all_docs):
 
 @st.cache_resource(show_spinner=False)
 def get_embeddings(_hf_key=hf_key):
-    embeddings = GoogleGenerativeAIEmbeddings(model="text_multilingual-embedding-002")
+    embeddings =HuggingFaceInferenceAPIEmbeddings(
+    api_key=hf_key,
+    model_name="sentence-transformers/all-MiniLM-l6-v2",
+)
     return embeddings
 
 
