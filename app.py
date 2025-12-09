@@ -62,12 +62,7 @@ def split_documents(_all_docs):
 
 @st.cache_resource(show_spinner=False)
 def get_embeddings(_hf_key=hf_key):
-    model = "Qwen/Qwen3-Embedding-8B"
-    embeddings = HuggingFaceEndpointEmbeddings(
-        model=model,
-        task="feature-extraction",
-        huggingfacehub_api_token=_hf_key
-    )
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
     return embeddings
 
 
